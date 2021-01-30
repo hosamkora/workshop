@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val exposed_version: String by project
 
 plugins {
     application
@@ -32,9 +33,11 @@ dependencies {
     implementation("io.ktor:ktor-locations:$ktor_version")
     implementation("io.ktor:ktor-auth:$ktor_version")
     implementation("io.ktor:ktor-gson:$ktor_version")
-    implementation("org.jetbrains.exposed", "exposed-core", "0.24.1")
-    implementation("org.jetbrains.exposed", "exposed-dao", "0.24.1")
-    implementation("org.jetbrains.exposed", "exposed-jdbc", "0.24.1")
+    implementation("org.jetbrains.exposed", "exposed-core", "$exposed_version")
+    implementation("org.jetbrains.exposed", "exposed-dao", "$exposed_version")
+    implementation("org.jetbrains.exposed", "exposed-jdbc", "$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-jodatime:$exposed_version")
+    implementation("org.postgresql", "postgresql", "42.1.4")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
 }
 
@@ -47,6 +50,8 @@ tasks.withType<Jar> {
         )
     }
 }
+
+
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
