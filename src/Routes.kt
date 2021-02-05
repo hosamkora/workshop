@@ -49,7 +49,7 @@ fun Application.routes() {
             call.respond(inspections)
         }
 
-        get("/project/{id}") {
+        get("/aircraft/{id}") {
             val aircraft = AircraftDAO.getAircraftById(call.parameters["id"]!!.toInt())
             call.respond(aircraft!!)
         }
