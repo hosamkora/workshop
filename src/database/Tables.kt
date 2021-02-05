@@ -90,7 +90,7 @@ object Projects : Table() {
     val startDate = datetime("start_date")
     val endDate = datetime("end_date").nullable()
     val durationInDays = integer("duration_in_days")
-    val projectState = text("project_state").default("Not Started")
+    val state = text("project_state").default("Not Started")
 
     override val primaryKey = PrimaryKey(id, name = "PK_Project")
 

@@ -28,7 +28,7 @@ data class Project(
     val inspection: Inspection,
     val startDate: DateTime,
     val endDate: DateTime?,
-    val projectState: String,
+    val state: String,
     val durationInDays: Int,
 )
 

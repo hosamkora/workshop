@@ -52,7 +52,7 @@ object AircraftDAO {
                     aircraft = getAircraftWithId(project[Projects.aircraftId]),
                     inspection = getInspectionWithId(project[Projects.inspectionId]),
                     durationInDays = project[Projects.durationInDays],
-                    projectState = project[Projects.projectState]
+                    state = project[Projects.state]
                 )
             }
         }
