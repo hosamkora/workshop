@@ -52,13 +52,14 @@ object AircraftDAO {
                     aircraft = getAircraftWithId(project[Projects.aircraftId]),
                     inspection = getInspectionWithId(project[Projects.inspectionId]),
                     durationInDays = project[Projects.durationInDays],
+                    projectState = project[Projects.projectState]
                 )
             }
         }
         return projects
     }
 
- 
+
     fun insertProject(project: Project) {
         transaction {
             Projects.insert {

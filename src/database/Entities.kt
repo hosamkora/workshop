@@ -1,10 +1,5 @@
 package com.example.database
 
-import com.example.database.Projects.autoIncrement
-import com.example.database.Projects.nullable
-import com.example.database.Projects.references
-import com.google.gson.annotations.SerializedName
-import org.jetbrains.exposed.sql.jodatime.datetime
 import org.joda.time.DateTime
 
 data class Model(val name: String)
@@ -33,6 +28,7 @@ data class Project(
     val inspection: Inspection,
     val startDate: DateTime,
     val endDate: DateTime?,
+    val projectState: String,
     val durationInDays: Int,
 )
 
