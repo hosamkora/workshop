@@ -6,6 +6,17 @@ import org.joda.time.DateTime
 
 
 object AircraftDAO {
+    fun getAllModels(): List<Model> {
+        var models = listOf<Model>()
+        transaction {
+            models = Models.selectAll().map {
+                Model(
+                    name = it[Models.name]
+                )
+            }
+        }
+        return models
+    }
 
     fun insertAircraft(aircraft: Aircraft) {
         transaction {
@@ -57,6 +68,43 @@ object AircraftDAO {
             }
         }
         return projects
+    }
+
+    fun getAircraftById(id: Int): Aircraft? {
+        var aircraft: Aircraft? = null
+        transaction {
+            Aircrafts.select { Aircrafts.id eq id }.map {
+                aircraft = Aircraft(
+                    id = it[Aircrafts.id],
+                    name = it[Aircrafts.name],
+                    model = it[Aircrafts.model],
+                    msn = it[Aircrafts.msn],
+                    aen = it[Aircrafts.aen],
+                    imageUrl = it[Aircrafts.imageUrl],
+                    flyingHours = it[Aircrafts.flyingHours],
+                    calenderDate = it[Aircrafts.calenderDate],
+                )
+            }.first()
+        }
+        return aircraft;
+    }
+
+    fun getInspectionById(id: Int): Inspection? {
+        var inspection: Inspection? = null
+        transaction {
+            Aircrafts.select { Aircrafts.id eq id }.map {
+                inspection = Inspections.select { Inspections.id eq id }.map { inspection ->
+                    Inspection(
+                        id = inspection[Inspections.id],
+                        name = inspection[Inspections.name],
+                        model = inspection[Inspections.aircraftModel],
+                    )
+
+                }.first()
+            }
+
+        }
+        return inspection;
     }
 
 

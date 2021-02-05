@@ -2,6 +2,7 @@ package com.example
 
 import com.example.database.*
 import com.google.gson.FieldNamingPolicy
+import com.google.gson.JsonObject
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -48,6 +49,15 @@ fun Application.routes() {
             call.respond(inspections)
         }
 
+        get("/project/{id}") {
+            val aircraft = AircraftDAO.getAircraftById(call.parameters["id"]!!.toInt())
+            call.respond(aircraft!!)
+        }
+
+        get("/models") {
+            val models = AircraftDAO.getAllModels()
+            call.respond(models)
+        }
 
     }
 }
